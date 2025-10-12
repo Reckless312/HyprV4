@@ -28,7 +28,6 @@
         "pulseaudio",
         "pulseaudio#microphone",
         "tray",
-        "custom/weather",
         "custom/myhyprv",
         "custom/light_dark"
     ],

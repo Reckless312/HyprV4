@@ -8,7 +8,6 @@
     "height": 50,
     "modules-left": [
         "clock",
-        "custom/weather",
         "wlr/workspaces"
     ],
     "modules-center": ["hyprland/window"],

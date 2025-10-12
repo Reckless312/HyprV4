@@ -14,8 +14,7 @@
         "custom/launch_thunar"
     ],
     "modules-center": ["wlr/taskbar"],
-    "modules-right": ["custom/weather"],
-
+   
     "include": [
         "~/.config/HyprV/waybar/conf/mesu.jsonc"
     ],

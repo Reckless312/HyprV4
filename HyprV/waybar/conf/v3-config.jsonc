@@ -24,7 +24,6 @@
         "pulseaudio#microphone",
         "backlight",
         "tray",
-        "custom/weather",
         "custom/updates",
         "clock",
         "custom/myhyprv",
