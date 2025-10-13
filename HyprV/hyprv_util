@@ -1,6 +1,11 @@
 #!/bin/bash
 . ~/.config/HyprV/hyprv.conf
 
+if ! pgrep -x swww-daemon > /dev/null; then
+    swww-daemon &
+    sleep 0.5
+fi
+
 get_theme() {
     # Check which waybar theme is set
     THEMEIS=$(readlink -f ~/.config/waybar/style.css | cut -d '-' -f3)
