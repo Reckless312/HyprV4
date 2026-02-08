@@ -73,6 +73,18 @@ install_stage=(
     xfce4-settings
     nwg-look
     sddm
+    man
+    gedit
+    github-desktop-bin
+    pipewire
+    pipewire-pulse
+    noto-fonts-cjk
+    steam
+    discord
+    xournalpp
+    flatpak
+    qimgv-git
+    jetbrains-toolbox
 )
 
 for str in ${myArray[@]}; do
