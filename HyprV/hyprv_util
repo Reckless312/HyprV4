@@ -1,11 +1,6 @@
 #!/bin/bash
 . ~/.config/HyprV/hyprv.conf
 
-if ! pgrep -x swww-daemon > /dev/null; then
-    swww-daemon &
-    sleep 0.5
-fi
-
 get_theme() {
     # Check which waybar theme is set
     THEMEIS=$(readlink -f ~/.config/waybar/style.css | cut -d '-' -f3)
@@ -55,15 +50,17 @@ set_current_background() {
     get_theme
     get_ver
     
+    
     if [[ ! -z "$SET_BG" ]]; then
-        #set the current background
+        # normal dark/light wallpapers
         if [[ $THEMEIS == "dark.css" ]]; then
-            swww img ~/.config/HyprV/backgrounds/$VER'-background-dark.jpg'
+            awww img ~/.config/HyprV/backgrounds/${VER}-background-dark.jpg
         else
-            swww img ~/.config/HyprV/backgrounds/$VER'-background.jpg'
+            awww img ~/.config/HyprV/backgrounds/${VER}-background.jpg
         fi
     else
-        swww img $SET_BG
+        # user-provided wallpaper
+        awww img "$SET_BG"
     fi
 }
 
@@ -105,9 +102,9 @@ switch_version() {
 
     #set the background
     if [ -z $SET_BG ]; then
-        swww img ~/.config/HyprV/backgrounds/$VERTO'background'$SWITCHTO.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
+        awww img ~/.config/HyprV/backgrounds/$VERTO'background'$SWITCHTO.jpg --transition-fps 60 --transition-type wipe --transition-duration 2
     else
-        swww img $SET_BG --transition-fps 60 --transition-type wipe --transition-duration 2
+        awww img $SET_BG --transition-fps 60 --transition-type wipe --transition-duration 2
     fi
 
     #update the sddm image

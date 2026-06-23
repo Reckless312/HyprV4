@@ -5,6 +5,7 @@
     font-weight: bold;
     font-size: 16px;
     min-height: 0;
+    color: #000000;
 }
 
 window#waybar {
@@ -27,7 +28,7 @@ tooltip label{
 
 #workspaces button {
     padding: 5px;
-    color: #313244;
+    color: #000000;
     margin-right: 5px;
 }
 
