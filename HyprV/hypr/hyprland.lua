@@ -58,11 +58,9 @@ end)
 
 -- 'exec' (not exec-once): also re-runs on config reload
 hl.on("hyprland.start", function()
-    hl.exec_cmd("waybar")
     hl.exec_cmd("~/.config/HyprV/hyprv_util setbg")
 end)
 hl.on("config.reloaded", function()
-    hl.exec_cmd("waybar")
     hl.exec_cmd("~/.config/HyprV/hyprv_util setbg")
 end)
 

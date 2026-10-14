@@ -85,6 +85,8 @@ install_stage=(
     flatpak
     qimgv-git
     jetbrains-toolbox
+    qbittorrent
+    neofetch
 )
 
 for str in ${myArray[@]}; do
