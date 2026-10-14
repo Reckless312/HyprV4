@@ -1,48 +1,16 @@
 #!/bin/bash
-# sourced by hyprv_util and waybar/scripts/baraction, which both need the same helpers
-
-get_theme() {
-    # Check which waybar theme is set
-    if [[ $(basename "$(readlink -f ~/.config/waybar/style.css)") == *-dark.css ]]; then
-        THEMEIS="dark.css"
-    else
-        THEMEIS=""
-    fi
-
-    #if the theme is not dark then we need to switch to it
-    if [[ $THEMEIS == "dark.css" ]]; then
-        SWITCHTO="-dark"
-        MODESTR="Dark"
-    else
-        SWITCHTO=""
-        MODESTR="Light"
-    fi
-}
 
 update_theme() {
     #set the xfce and GTK theme
-    if [[ $VER == "v4" || $VERTO == "v4-" ]]; then
-        # the bars are transparent, so the light variant needs dark icons to stay visible on the light wallpaper
-        if [[ $SWITCHTO == "-dark" ]]; then PAPIRUS="Papirus-Dark"; else PAPIRUS="Papirus-Light"; fi
-        xfconf-query -c xsettings -p /Net/IconThemeName -s "$PAPIRUS"
-        gsettings set org.gnome.desktop.interface icon-theme "$PAPIRUS"
-    else
-        xfconf-query -c xsettings -p /Net/IconThemeName -s "Adwaita$SWITCHTO"
-        gsettings set org.gnome.desktop.interface icon-theme "Adwaita$SWITCHTO"
-    fi
+    xfconf-query -c xsettings -p /Net/IconThemeName -s "Adwaita-dark"
+    gsettings set org.gnome.desktop.interface icon-theme "Adwaita-dark"
 
-    xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita$SWITCHTO"
-    gsettings set org.gnome.desktop.interface gtk-theme "Adwaita$SWITCHTO"
-}
-
-get_ver() {
-    # the symlink target is .../vN-config.jsonc; parsing the filename keeps this independent of the path depth
-    VER=$(basename "$(readlink -f ~/.config/waybar/config.jsonc)")
-    VER=${VER%%-*}
+    xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark"
+    gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 }
 
 restart_waybar() {
-    # setbg runs on start and on every config reload, so two restarts can overlap and leave duplicate bars; the lock serializes them
+    # hyprv_util runs on start and on every config reload, so two restarts can overlap and leave duplicate bars; the lock serializes them
     # fd 9 is closed for the bars so they don't hold the lock for as long as they run
     (
         flock 9
@@ -50,11 +18,5 @@ restart_waybar() {
         #restart the waybar
         pkill waybar
         waybar 9>&- &
-
-        get_ver
-
-        if [[ $VER == "v4" ]]; then
-            waybar --config ~/.config/HyprV/waybar/conf/v4-config-bottom.jsonc 9>&- &
-        fi
     ) 9>"${XDG_RUNTIME_DIR:-/tmp}/hyprv-waybar.lock"
 }

@@ -1,7 +1,7 @@
 window {
     margin: 0px;
-    border: 5px solid #1e1e2e;
-    background-color: #cdd6f4;
+    border: 5px solid {{colors.surface.default.hex}};
+    background-color: {{colors.on_surface.default.hex}};
     border-radius: 15px;
 }
 
@@ -10,26 +10,25 @@ window {
     margin: 4px;
     padding-left: 20px;
     border: none;
-    color: #cdd6f4;
+    color: {{colors.on_surface.default.hex}};
     font-weight: bold;
-    background-color: #1e1e2e;
-    background: ;
+    background-color: {{colors.surface.default.hex}};
    	outline: none;
     border-radius: 15px;
     margin: 10px;
     margin-bottom: 2px;
 }
 #input:focus {
-    border: 0px solid #1e1e2e;
+    border: 0px solid {{colors.surface.default.hex}};
     margin-bottom: 0px;
 }
 
 #inner-box {
     margin: 4px;
-    border: 10px solid #1e1e2e;
-    color: #cdd6f4;
+    border: 10px solid {{colors.surface.default.hex}};
+    color: {{colors.on_surface.default.hex}};
     font-weight: bold;
-    background-color: #1e1e2e;
+    background-color: {{colors.surface.default.hex}};
     border-radius: 15px;
 }
 
@@ -37,7 +36,7 @@ window {
     margin: 0px;
     border: none;
     border-radius: 15px;
-    background-color: #1e1e2e;
+    background-color: {{colors.surface.default.hex}};
 }
 
 #scroll {
@@ -49,16 +48,16 @@ window {
 }
 
 #img:selected {
-    background-color: #89b4fa;
+    background-color: {{colors.primary.default.hex}};
     border-radius: 15px;
 }
 
 #text:selected {
-    color: #cdd6f4;
+    color: {{colors.on_primary.default.hex}};
     margin: 0px 0px;
     border: none;
     border-radius: 15px;
-    background-color: #89b4fa;
+    background-color: {{colors.primary.default.hex}};
 }
 
 #entry {
@@ -72,5 +71,5 @@ window {
     margin: 0px 0px;
     border: none;
     border-radius: 15px;
-    background-color: #89b4fa;
+    background-color: {{colors.primary.default.hex}};
 }

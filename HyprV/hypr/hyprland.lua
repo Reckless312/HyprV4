@@ -47,7 +47,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
-    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("~/.local/bin/qs-wallpaperpicker")
     hl.exec_cmd("mako")
     hl.exec_cmd("blueman-applet")
     hl.exec_cmd("nm-applet --indicator")
@@ -58,10 +58,10 @@ end)
 
 -- 'exec' (not exec-once): also re-runs on config reload
 hl.on("hyprland.start", function()
-    hl.exec_cmd("~/.config/HyprV/hyprv_util setbg")
+    hl.exec_cmd("~/.config/HyprV/hyprv_util")
 end)
 hl.on("config.reloaded", function()
-    hl.exec_cmd("~/.config/HyprV/hyprv_util setbg")
+    hl.exec_cmd("~/.config/HyprV/hyprv_util")
 end)
 
 
@@ -172,9 +172,8 @@ hl.bind(mainMod .. " + P",         hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J",         hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + Print",     hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
 hl.bind(mainMod .. " + PRINT",     hl.dsp.exec_cmd("grimblast copy area"))
-hl.bind(mainMod .. " + T",         hl.dsp.exec_cmd("~/.config/HyprV/hyprv_util vswitch"))
-hl.bind(mainMod .. " + TAB",       hl.dsp.exec_cmd("~/.config/HyprV/waybar/scripts/baraction light"))
 hl.bind("ALT + V",                 hl.dsp.exec_cmd("cliphist list | wofi -dmenu | cliphist decode | wl-copy"))
+hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("~/.local/bin/qs-wallpaperpicker toggle"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -254,5 +253,5 @@ hl.window_rule({
 hl.window_rule({ name = "anim-thunar",   match = { class = "^(thunar)$" },   animation = "popin" })
 hl.window_rule({ name = "anim-chromium", match = { class = "^(chromium)$" }, animation = "popin" })
 
--- Waybar restarts on every setbg/reload and awww redraws on wallpaper change; animating them would replay the pop-in each time
-hl.layer_rule({ name = "no-anim-waybar-awww", match = { namespace = "^(waybar|awww-daemon)$" }, no_anim = true })
+-- Waybar restarts on every reload; animating it would replay the pop-in each time
+hl.layer_rule({ name = "no-anim-waybar", match = { namespace = "^waybar$" }, no_anim = true })

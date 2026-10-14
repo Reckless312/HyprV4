@@ -39,7 +39,8 @@ reboot
 Now install the below for Hyprland
 
 ```
-yay -S hyprland kitty jq mako waybar-hyprland swww swaylock-effects \
+yay -S hyprland kitty jq mako waybar-hyprland quickshell matugen ffmpeg qt6-multimedia \
+qt6-multimedia-ffmpeg qt6-imageformats swaylock-effects \
 wofi wlogout xdg-desktop-portal-hyprland swappy grim slurp thunar \
 polkit-gnome python-requests pamixer pavucontrol brightnessctl bluez \
 bluez-utils blueman network-manager-applet gvfs thunar-archive-plugin \

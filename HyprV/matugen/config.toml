@@ -1,0 +1,30 @@
+[config]
+
+[templates.waybar]
+input_path = '~/.config/HyprV/matugen/templates/waybar.css'
+output_path = '~/.config/HyprV/waybar/style/style.css'
+# Waybar only reads its stylesheet at start
+post_hook = '~/.config/HyprV/hyprv_util'
+
+[templates.wofi]
+input_path = '~/.config/HyprV/matugen/templates/wofi.css'
+output_path = '~/.config/HyprV/wofi/style/style.css'
+
+[templates.mako]
+input_path = '~/.config/HyprV/matugen/templates/mako'
+output_path = '~/.config/HyprV/mako/conf/config'
+post_hook = 'makoctl reload'
+
+[templates.swaylock]
+input_path = '~/.config/HyprV/matugen/templates/swaylock'
+output_path = '~/.config/HyprV/swaylock/config'
+
+[templates.kitty]
+input_path = '~/.config/HyprV/matugen/templates/kitty.conf'
+output_path = '~/.config/HyprV/kitty/matugen.conf'
+# SIGUSR1 makes running kitty windows reload their config
+post_hook = 'pkill -USR1 kitty'
+
+[templates.qs-wallpaperpicker]
+input_path = '~/.config/qs-wallpaperpicker/extras/matugen/quickshell.json.hbs'
+output_path = '~/.config/qs-wallpaperpicker/colors/Colors.json'
