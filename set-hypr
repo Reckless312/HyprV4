@@ -349,7 +349,8 @@ if [[ $CFG == "Y" || $CFG == "y" ]]; then
     # it draws the wallpaper and, through matugen, recolors the bar, launcher, notifications, terminal and lock screen
     echo -e "$CNT - Setting up the wallpaper picker..."
     git clone https://github.com/dhrruvsharma/qs-wallpaperpicker ~/.config/qs-wallpaperpicker &>> $INSTLOG
-    ~/.config/qs-wallpaperpicker/install.sh --yes &>> $INSTLOG
+    # a fresh login shell has no ~/.local/bin on PATH, so the installer would put the command in /usr/local/bin instead; the Hyprland config calls it from ~/.local/bin
+    PATH="$HOME/.local/bin:$PATH" ~/.config/qs-wallpaperpicker/install.sh --yes &>> $INSTLOG
     # the picker's settings file is not in its repo, so write the ones this setup uses
     cat > ~/.config/qs-wallpaperpicker/settings.json <<EOF
 {
