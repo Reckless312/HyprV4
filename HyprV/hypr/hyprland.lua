@@ -98,7 +98,7 @@ hl.config({
         border_size = 2,
 
         col = {
-            active_border   = "rgb(cdd6f4)",
+            active_border   = { colors = {"rgb(0055a4)", "rgb(ffffff)", "rgb(ef4135)"}, angle = 45 },
             inactive_border = "rgba(595959aa)",
         },
 
@@ -138,6 +138,8 @@ hl.animation({ leaf = "windowsOut", enabled = true, speed = 7,  bezier = "myBezi
 hl.animation({ leaf = "border",     enabled = true, speed = 10, bezier = "default" })
 hl.animation({ leaf = "fade",       enabled = true, speed = 7,  bezier = "default" })
 hl.animation({ leaf = "workspaces", enabled = true, speed = 6,  bezier = "default" })
+hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 6, bezier = "default", style = "slidefadevert 20%" })
+hl.animation({ leaf = "layers", enabled = true, speed = 4, bezier = "myBezier", style = "popin 80%" })
 
 hl.config({
     dwindle = {
@@ -197,6 +199,10 @@ hl.bind(mainMod .. " + KP_Multiply", hl.dsp.pass({ window = "class:^discord$" })
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
+hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
+hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + CTRL + S", hl.dsp.window.move({ workspace = "+0" }))
+
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
@@ -247,3 +253,6 @@ hl.window_rule({
 })
 hl.window_rule({ name = "anim-thunar",   match = { class = "^(thunar)$" },   animation = "popin" })
 hl.window_rule({ name = "anim-chromium", match = { class = "^(chromium)$" }, animation = "popin" })
+
+-- Waybar restarts on every setbg/reload and awww redraws on wallpaper change; animating them would replay the pop-in each time
+hl.layer_rule({ name = "no-anim-waybar-awww", match = { namespace = "^(waybar|awww-daemon)$" }, no_anim = true })
