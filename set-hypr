@@ -92,6 +92,7 @@ install_stage=(
     jetbrains-toolbox
     qbittorrent
     neofetch
+    gnome-calculator
 )
 
 for str in ${myArray[@]}; do

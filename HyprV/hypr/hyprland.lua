@@ -171,7 +171,6 @@ hl.bind(mainMod .. " + SPACE",     hl.dsp.exec_cmd("wofi"))
 hl.bind(mainMod .. " + P",         hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J",         hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + Print",     hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
-hl.bind(mainMod .. " + PRINT",     hl.dsp.exec_cmd("grimblast copy area"))
 hl.bind("ALT + V",                 hl.dsp.exec_cmd("cliphist list | wofi -dmenu | cliphist decode | wl-copy"))
 hl.bind(mainMod .. " + TAB", hl.dsp.exec_cmd("~/.local/bin/qs-wallpaperpicker toggle"))
 
@@ -255,3 +254,6 @@ hl.window_rule({ name = "anim-chromium", match = { class = "^(chromium)$" }, ani
 
 -- Waybar restarts on every reload; animating it would replay the pop-in each time
 hl.layer_rule({ name = "no-anim-waybar", match = { namespace = "^waybar$" }, no_anim = true })
+
+-- slurp's selection overlay must vanish instantly, otherwise grim captures it mid-fade
+hl.layer_rule({ name = "no-anim-slurp", match = { namespace = "^selection$" }, no_anim = true })

@@ -18,6 +18,8 @@ post_hook = 'makoctl reload'
 [templates.swaylock]
 input_path = '~/.config/HyprV/matugen/templates/swaylock'
 output_path = '~/.config/HyprV/swaylock/config'
+# The greeter runs as the sddm user and can't read $HOME, so the theme gets a copy
+post_hook = 'cp -fL ~/.cache/current_wallpaper /usr/share/sddm/themes/sdt/wallpaper.jpg'
 
 [templates.kitty]
 input_path = '~/.config/HyprV/matugen/templates/kitty.conf'
